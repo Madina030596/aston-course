@@ -1,3 +1,4 @@
+// Лекция 4
 // Домашнее задание(Порешать типовые задачи - написать порядок и вывод в консоли):
 // 1)
 // console.log('1');
@@ -9,6 +10,8 @@
 // promiseNew.then(() => console.log('4'));
 // setTimeout(() => console.log('5'));
 // console.log('6');
+
+//ответ: 1, 3, 6, 4, 5, 2
 //////////////////////////////
 // 2)
 // let promiseTree = new Promise((resolve, reject) => {
@@ -19,6 +22,8 @@
 //     }, 0);
 //     console.log("3");
 // });
+
+//ответ: 1, 3, 2
 /////////////////////////
 // 3)
 // let promiseTwo = new Promise((resolve, reject) => {
@@ -40,6 +45,8 @@
 //     .then((res) => {
 //         console.log(res);
 //     });
+
+//ответ: abc
 /////////////////////////////
 // 4)
 // function doSmth() {
@@ -61,6 +68,8 @@
 //         console.log("4", c);
 //         return c;
 //     });
+
+//ответ: 1 123, 2 123, 3 321, 4 undefined
 ///////////////////////////
 // 5)
 // console.log("1");
@@ -69,6 +78,8 @@
 // }, 0);
 // Promise.resolve().then(() => console.log("3"));
 // console.log("4");
+
+//ответ: 1, 4, 3, 2
 ////////////////////////////
 //7)
 // async function a() {
@@ -83,6 +94,8 @@
 //   console.log("f2");
 // })();
 // console.log("2");
+
+//ответ: 1, f1, a, 2, f2
 ////////////////////////////////
 //8)
 // console.log(1);
@@ -108,24 +121,28 @@
 // func();
 
 // console.log(10);
+
+//ответ: 1, 3, 4, 5, 10, 6, 7, 8, 2, 9
 ///////////////////////////////////
 // 9)*
 // function foo(callback) {
-//     setTimeout(() => {
-//         callback('A');
-//     }, Math.random() * 100);
+//   setTimeout(() => {
+//     callback("A");
+//   }, Math.random() * 100);
 // }
+
 // function bar(callback) {
-//     setTimeout(() => {
-//         callback('B');
-//     }, Math.random() * 100);
+//   setTimeout(() => {
+//     callback("B");
+//   }, Math.random() * 100);
 // }
+
 // function baz(callback) {
-//     setTimeout(() => {
-//         callback('C');
-//     }, Math.random() * 100);
+//   setTimeout(() => {
+//     callback("C");
+//   }, Math.random() * 100);
 // }
-//
+
 // foo(console.log)
 // bar(console.log)
 // baz(console.log)
@@ -133,3 +150,32 @@
 // Написать функцию, чтобы починить последовательность выполнения A,B,C без использования колбэк хэлла
 // в функциях foo, bar,baz запрещено что-либо менять
 // подсказка: нужны промисы =))
+
+function foo(callback) {
+    setTimeout(() => {
+      callback("A");
+    }, Math.random() * 100);
+  }
+  
+  function bar(callback) {
+    setTimeout(() => {
+      callback("B");
+    }, Math.random() * 100);
+  }
+  
+  function baz(callback) {
+    setTimeout(() => {
+      callback("C");
+    }, Math.random() * 100);
+  }
+
+function promisify(func) {
+    return new Promise((resolve, reject) => {
+        func(resolve)
+    })
+}
+
+Promise.all([promisify(foo), promisify(bar), promisify(baz)])
+    .then(ar => ar.forEach(item => console.log(item)))
+
+
