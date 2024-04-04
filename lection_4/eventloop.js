@@ -1,15 +1,15 @@
 // console.log('Start');
-
+//
 // example()
 // setTimeout(function setTimeoutFn1() {
 //     console.log('Timeout finished1');
 // }, 0);
-
+//
 // console.log('End');
-
+//
 // function example () {
 //     console.log('example')
-
+//
 //     setTimeout(function setTimeoutFn2() {
 //         console.log('Timeout finished2');
 //     }, 0)
@@ -19,16 +19,16 @@
 // function loop() {
 //     const start= new Date().getTime();
 //     for (let i = 0; i < Array(30000).length; i++) {
-
+//
 //     }
 //     const end= new Date().getTime();
 //     console.log(`SecondWay: ${end - start}ms`);
 // }
-
+//
 // loop()
 // // синхронный код
 // console.log('Hi')
-
+//
 // // асинхронный код
 // setTimeout(function set() {
 //     console.log('hello')
