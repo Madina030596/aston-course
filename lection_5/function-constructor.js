@@ -1,28 +1,28 @@
-function User(name) {
-    // this = {};  (неявно)
+// function User(name) {
+//     // this = {};  (неявно)
 
-    // добавляет свойства к this
-    this.name = name;
-    this.isAdmin = false;
+//     // добавляет свойства к this
+//     this.name = name;
+//     this.isAdmin = false;
 
-    // return this;  (неявно)
-}
-// Если вызвать без new, то будет undefined - отработает как обычная ф-ция
+//     // return this;  (неявно)
+// }
+// // Если вызвать без new, то будет undefined - отработает как обычная ф-ция
 
 
-const user = new User("Jack")
+// const user = new User("Jack")
 
-// Потеря конструктора
+// // Потеря конструктора
 
-function Rabbit() {
-    this.a = 2
-}
-// по умолчанию:
-// Rabbit.prototype = { constructor: Rabbit }
+// function Rabbit() {
+//     this.a = 2
+// }
+// // по умолчанию:
+// // Rabbit.prototype = { constructor: Rabbit }
 
-let rabbit = new Rabbit();
+// let rabbit = new Rabbit();
 
-console.log(rabbit);
+// console.log(rabbit);
 
 
 // Обычно конструкторы не имеют оператора return.

@@ -3,7 +3,7 @@
 //         resolve(123)
 //     }, 1000)
 // });
-//
+
 // promise
 //     .then((data)=> console.log('data', data), (error)=> console.log('err', error))
 
@@ -13,11 +13,11 @@
 //         reject(123)
 //     }, 1000)
 // });
-//
+
 // promise2
 //     .catch((error)=> {
 //         console.log('catch error', error)
-//
+
 //         return 456
 //     })
 //     .then((data)=>console.log('next promise', data))
@@ -25,7 +25,7 @@
 // const promise3 = new Promise((resolve, reject) => {
 //     setTimeout(() => resolve("value"), 2000);
 // })
-//
+
 // promise3
 //     .finally((data) => console.log("Промис завершён", data))
 //     .then(result => console.log(result));
@@ -54,29 +54,29 @@
 // цепочка возвращаемых новых промисов
 
 // new Promise(function(resolve, reject) {
-//
+
 //     setTimeout(() => resolve(1), 1000);
-//
+
 // }).then(function(result) {
-//
+
 //     console.log(result); // 1
-//
+
 //     return new Promise((resolve, reject) => { // (*)
 //         setTimeout(() => resolve(result * 2), 1000);
 //     });
-//
+
 // }).then(function(result) { // (**)
-//
+
 //     console.log(result); // 2
-//
+
 //     return new Promise((resolve, reject) => {
 //         setTimeout(() => resolve(result * 2), 1000);
 //     });
-//
+
 // }).then(function(result) {
-//
+
 //     console.log(result); // 4
-//
+
 // });
 
 ////////// PROMISE API /////////////
