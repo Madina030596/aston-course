@@ -47,7 +47,7 @@
 // bird.speak();   // "Some generic sound"
 // bird.fly();     // "Flying high!"
 
-//1 решение
+//решение 1
 // class Animal {
 //     constructor (name) {
 //         this.name = name
@@ -75,7 +75,7 @@
 // bird.speak();   // "Some generic sound"
 // bird.fly();     // "Flying high!"
 
-//2 решение
+//решение 2
 // function Animal(name) {
 //     this.name = name
 // }
