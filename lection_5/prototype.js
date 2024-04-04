@@ -8,19 +8,19 @@
 // const obj1 = {
 //     a: 1
 // }
-
+//
+//
 // const obj2 = {
 //     b:2
 // }
-// obj2.__proto__ = obj1; //сеттер proto будет устанавливать [[Prototype]] для объекта obj2 и равняется obj1
-
+// obj2.__proto__ = obj1; сеттер proto будет устанавливать [[Prototype]] для объекта obj2 и равняется obj1
+//
 // const obj3 = {
 //     c: 3
 // }
-
+//
 // obj2.__proto__ = obj3;
-
-// console.log(obj2)
+//
 // console.log(obj2.a)
 
 ////////////
@@ -28,61 +28,64 @@
 // let animal = {
 //     eats: true,
 //     walk() {
-//         console.log("Animal walk");
+//         alert("Animal walk");
 //     }
 // };
-
+//
 // let rabbit = {
 //     jumps: true,
 //     __proto__: animal
 // };
-
+//
 // let longEar = {
 //     earLength: 10,
 //     __proto__: rabbit
 // };
-
+//
 // // walk взят из цепочки прототипов
 // longEar.walk(); // Animal walk
 // console.log(longEar.jumps); // true (из rabbit)
 
-// значение this в прототипах
-//прототипы никак не влияют на this.
+/// значение this в прототипах
+// прототипы никак не влияют на this.
+//
+// Неважно, где находится метод: в объекте или его прототипе. При вызове метода this — всегда объект перед точкой.
+const animal = {
+    sleep() {
+        this.isSleeping = true;
+    }
+};
 
-//Неважно, где находится метод: в объекте или его прототипе. При вызове метода this — всегда объект перед точкой.
-// const animal = {
-//     sleep() {
-//         this.isSleeping = true;
-//     }
-// };
+const rabbit = {
+    name: "White Rabbit",
+    __proto__: animal
+};
 
-// const rabbit = {
-//     name: "White Rabbit",
-//     __proto__: animal
-// };
+// модифицирует rabbit.isSleeping
+rabbit.sleep();
 
-// // модифицирует rabbit.isSleeping
-// rabbit.sleep();
-
-// console.log(rabbit.isSleeping); // true
-// console.log(animal.isSleeping); // undefined (нет такого свойства в прототипе)
+console.log(rabbit.isSleeping); // true
+console.log(animal.isSleeping); // undefined (нет такого свойства в прототипе)
 
 ////////// в циклах
 // let animal = {
 //     eats: true
 // };
-
+//
 // let rabbit = {
 //     jumps: true,
-//     run: true,
+//      run: true,
 //     __proto__: animal
 // };
-
+//
 // // Object.keys возвращает только собственные ключи
-// console.log(Object.keys(rabbit)); // jumps, run
-
+// console.log(Object.keys(rabbit)); // jumps
+//
 // // for..in проходит и по своим, и по унаследованным ключам
-// for(let prop in rabbit) console.log(prop); // jumps, run, затем eats
+// for(let prop in rabbit) console.log(prop); // jumps, затем eats
+
+
+
 
 ////////////// Итоги:
 // 1.В JavaScript все объекты имеют скрытое свойство [[Prototype]], которое является либо другим объектом, либо null.
@@ -114,16 +117,16 @@
 //     __proto__: animal,
 //     jumps: true
 // };
-
-// console.log( rabbit.jumps ); // true
-
+//
+// console.log( rabbit.jumps ); // ? (1)
+//
 // delete rabbit.jumps;
-
-// console.log( rabbit.jumps ); // null
-
+//
+// console.log( rabbit.jumps ); // ? (2)
+//
 // delete animal.jumps;
-
-// console.log( rabbit.jumps ); // undefined
+//
+// console.log( rabbit.jumps ); // ? (3)
 
 //2.
 //Какой объект получит свойство full при вызове rabbit.eat(): animal или rabbit?
@@ -132,45 +135,39 @@
 //         this.full = true;
 //     }
 // };
-
+//
 // let rabbit = {
 //     __proto__: animal
 // };
-
+//
 // rabbit.eat(); // rabbit.full
 
 // 3.
-// let hamster = {
-//    stomach: [],
+let hamster = {
+    stomach: [],
 
-//   eat(food) {
-//       this.stomach.push(food);
-//   }
-// };
+    eat(food) {
+        this.stomach.push(food);
+    }
+};
 
-// let speedy = {
-//     // stomach: [],
-//   __proto__: hamster,
-// };
+let speedy = {
+    __proto__: hamster
+};
 
-// let lazy = {
-//     // stomach: [],
-//   __proto__: hamster,
-// };
+let lazy = {
+    __proto__: hamster
+};
 
-// // Этот хомяк нашёл еду
-// speedy.eat("apple");
-// console.log(speedy.stomach);
-// speedy.eat( "banana");
-// console.log(speedy.stomach);
-
+// Этот хомяк нашёл еду
+speedy.eat("apple");
+console.log( speedy.stomach );
+//
 // // У этого хомяка тоже есть еда. Почему? Исправьте
-// console.log(lazy.stomach);
-// // Решение: добавить каждому свой stomach
+// console.log( lazy.stomach );
 
 // class Animal {
 //   nameS = "bob";
-
 //   setName(newName) {
 //     this.nameS = newName;
 //   }
@@ -178,14 +175,13 @@
 //     return this.nameS;
 //   }
 // }
-
+//
 // class Dog extends Animal {
 //   constructor() {
 //     super();
 //   }
 // }
-
-
+//
 // let animal = new Animal();
 // console.log(animal.nameS);
 // console.log(Animal.prototype); //  безымянный объект с конструктором (он не прописан в Animal явно, но все равно есть), методами и [[Prototype]] который будет = Object
